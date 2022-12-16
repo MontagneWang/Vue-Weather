@@ -18,13 +18,12 @@ export default {
         version: "2.0",      // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
         plugins: ['AMap.Geolocation'],       // 需要使用的的插件列表，如比例尺'AMap.Scale'等
       }).then((AMap) => {
-        this.map = new AMap.Map("container", {  //设置地图容器id
-          viewMode: "3D",    //是否为3D地图模式
-          zoom: 15,           //初始化地图级别
-          // todo
-          center: [120.699242, 27.99375], //初始化地图中心点位置
-        });
-        // todo
+        // this.map = new AMap.Map("container", {  //设置地图容器id
+        //   viewMode: "3D",    //是否为3D地图模式
+        //   zoom: 15,           //初始化地图级别
+        //   center: [120, 28], //初始化地图中心点位置
+        // });
+
         // 创建小点标记
         // let marker = new AMap.Marker({
         //   position: [120.699242, 27.99375] // 基点坐标
@@ -32,7 +31,6 @@ export default {
         // // 地图添加标记
         // this.map.add(marker);
 
-        // todo 把位置信息解析出来
         let map = new AMap.Map('container', {
           resizeEnable: true
         })
@@ -58,6 +56,7 @@ export default {
   //DOM初始化完成进行地图初始化
   mounted() {
     this.initMap();
+
   },
 }
 </script>

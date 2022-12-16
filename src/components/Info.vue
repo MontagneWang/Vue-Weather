@@ -64,7 +64,6 @@ export default {
 	},
 	methods: {
 		send() {
-			// 使用箭头函数，调整 this 指向
 			Promise.all([
 				axios.get(`https://devapi.qweather.com/v7/weather/now?location=${this.geoLocation}&key=2175cc3e56c3447bb9476001f1513df0`),
 				axios.get(`https://geoapi.qweather.com/v2/city/lookup?location=${this.geoLocation}&key=2175cc3e56c3447bb9476001f1513df0`),
@@ -90,9 +89,6 @@ export default {
 						this.name = name
 						this.closeText = closeText
 						this.feelText = feelText
-						// // 调用图表绘制函数
-						// callEcharts(max1, max2, max3, min1, min2, min3)
-
 					})
 					.catch((err) => {
 						console.log("请求失败，Api 接口请求次数已达今日上限")

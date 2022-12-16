@@ -1,14 +1,14 @@
 <template>
 	<div id="app">
 		<nav class="topInfo">
-			<Info :info="this.weatherInfo[0]"/>
+			<Info :info="weatherInfo[0]"/>
 			<Map/>
 		</nav>
 
 		<footer class="future">
-			<Abbr :info="this.weatherInfo[1]"/>
-			<Abbr :info="this.weatherInfo[2]"/>
-			<Chart/>
+			<Abbr :info="weatherInfo[1]"/>
+			<Abbr :info="weatherInfo[2]"/>
+			<Chart :info="chartInfo"/>
 		</footer>
 	</div>
 </template>
@@ -26,6 +26,7 @@ export default {
 	data() {
 		return {
 			weatherInfo: [],
+			chartInfo: [],
 		}
 	},
 	computed: {
@@ -43,6 +44,7 @@ export default {
 			axios.get(`https://devapi.qweather.com/v7/weather/3d?location=${this.geoLocation}&key=2175cc3e56c3447bb9476001f1513df0`)
 					.then(({data: {daily: weatherInfo}}) => {
 						this.weatherInfo = weatherInfo
+						this.chartInfo = [weatherInfo[0].tempMax, weatherInfo[1].tempMax, weatherInfo[2].tempMax, weatherInfo[0].tempMin, weatherInfo[1].tempMin, weatherInfo[2].tempMin]
 					})
 					.catch((err) => {
 						console.log("请求失败，Api 接口请求次数已达今日上限")
@@ -51,6 +53,19 @@ export default {
 		}
 	},
 	mounted() {
+		console.log("地图接口使用 [高德] ，天气接口使用 [和风天气] 。\n" +
+				"您可以点击 [🔄更新天气] 按钮获取最新数据，也可以点击右下角的 [🌓] 按钮进行模式切换。")
+
+		function addDarkmodeWidget() {
+			const darkmode = new Darkmode({
+				label: '🌓', // default: ''
+			});
+			darkmode.showWidget();
+			new Darkmode().showWidget();
+		}
+
+		window.addEventListener('load', addDarkmodeWidget);
+
 		this.send()
 	},
 }
