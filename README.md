@@ -1,19 +1,2 @@
-# vue-weather
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+天气项目 Vue 版本
+主要是将之前的天气页面用 Vue 重写了一遍，布局没有改动
