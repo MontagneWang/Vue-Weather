@@ -56,72 +56,72 @@ console.log("地图接口使用 [高德] ，天气接口使用 [和风天气] �
 // }
 
 // 图表绘制
-function callEcharts(max1, max2, max3, min1, min2, min3) {
-	let myChart = echarts.init(document.getElementById('chart'))
-	let option = {
-		grid: {
-			x: 30,
-			y: 35,
-			x2: 20,
-			y2: 25,
-			borderWidth: 1
-		},
-		title: {
-			text: ' 气温走向',
-		},
-		xAxis: {
-			data: ['今天', '明天', '后天',],
-		},
-		yAxis: {
-			scale: true,
-		},
-		legend: {
-			data: ['最高温度', '最低温度']
-		},
-		series: [
-			{
-				name: '最高温度',
-				type: 'line',
-				data: [max1, max2, max3],
-				label: {
-					show: true,
-					position: 'top',
-					textStyle: {
-						fontSize: 16
-					}
-				},
-			},
-			{
-				name: '最低温度',
-				type: 'line',
-				data: [min1, min2, min3],
-				label: {
-					show: true,
-					position: 'top',
-					textStyle: {
-						fontSize: 12
-					}
-				},
-				lineStyle: {
-					normal: {
-						color: 'green',
-						type: 'dashed'
-					}
-				},
-			}
-		]
-	}
+// function callEcharts(max1, max2, max3, min1, min2, min3) {
+// 	let myChart = echarts.init(document.getElementById('chart'))
+// 	let option = {
+// 		grid: {
+// 			x: 30,
+// 			y: 35,
+// 			x2: 20,
+// 			y2: 25,
+// 			borderWidth: 1
+// 		},
+// 		title: {
+// 			text: ' 气温走向',
+// 		},
+// 		xAxis: {
+// 			data: ['今天', '明天', '后天',],
+// 		},
+// 		yAxis: {
+// 			scale: true,
+// 		},
+// 		legend: {
+// 			data: ['最高温度', '最低温度']
+// 		},
+// 		series: [
+// 			{
+// 				name: '最高温度',
+// 				type: 'line',
+// 				data: [max1, max2, max3],
+// 				label: {
+// 					show: true,
+// 					position: 'top',
+// 					textStyle: {
+// 						fontSize: 16
+// 					}
+// 				},
+// 			},
+// 			{
+// 				name: '最低温度',
+// 				type: 'line',
+// 				data: [min1, min2, min3],
+// 				label: {
+// 					show: true,
+// 					position: 'top',
+// 					textStyle: {
+// 						fontSize: 12
+// 					}
+// 				},
+// 				lineStyle: {
+// 					normal: {
+// 						color: 'green',
+// 						type: 'dashed'
+// 					}
+// 				},
+// 			}
+// 		]
+// 	}
+//
+// 	myChart.setOption(option)
+//
+// 	// echarts的图表只绘制一次，需要在更改窗口大小后重新绘制
+// 	window.onresize = function () {
+// 		myChart.resize()
+// 	}
+// }
 
-	myChart.setOption(option)
-
-	// echarts的图表只绘制一次，需要在更改窗口大小后重新绘制
-	window.onresize = function () {
-		myChart.resize()
-	}
-}
-
-let locationNow = "101210111"
-let NewLocation = ''
+// let locationNow = "101210111"
+// let NewLocation = ''
 // 渲染页面
 // function render() {
 // 	Promise.all([axios.get(`https://devapi.qweather.com/v7/weather/3d?location=${locationNow}&key=2175cc3e56c3447bb9476001f1513df0`),
@@ -202,10 +202,7 @@ let NewLocation = ''
 // 			// document.getElementById("modal").style.display = "block"
 // 		})
 // }
-
 // render()
-
-
 
 // 暗色模式适配
 function addDarkmodeWidget() {

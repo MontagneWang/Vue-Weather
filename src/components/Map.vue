@@ -6,18 +6,12 @@
 
 <script>
 import AMapLoader from '@amap/amap-jsapi-loader';
+import {mapMutations} from "vuex";
 
 export default {
   name: "Map",
-  data() {
-    return {
-      //此处不声明 map 对象，可以直接使用 this.map赋值或者采用非响应式的普通对象来存储。
-      //map:null,
-    }
-  },
-  computed: {},
-  watch: {},
   methods: {
+	  ...mapMutations(['CHANGE']),
     initMap() {
       AMapLoader.load({
         key: "0f680fc17ef03445c8e5548cc28a7225",             // 申请好的Web端开发者Key，首次调用 load 时必填
@@ -32,17 +26,17 @@ export default {
         });
         // todo
         // 创建小点标记
-        let marker = new AMap.Marker({
-          position: [120.699242, 27.99375] // 基点坐标
-        });
-        // 地图添加标记
-        this.map.add(marker);
+        // let marker = new AMap.Marker({
+        //   position: [120.699242, 27.99375] // 基点坐标
+        // });
+        // // 地图添加标记
+        // this.map.add(marker);
 
         // todo 把位置信息解析出来
         let map = new AMap.Map('container', {
           resizeEnable: true
         })
-        AMap.plugin('AMap.Geolocation', function () {
+        AMap.plugin('AMap.Geolocation',  ()=> {
           let geolocation = new AMap.Geolocation({
             enableHighAccuracy: true,// 高精度定位
             timeout: 10000,          // 超过10秒后停止定位
@@ -51,17 +45,9 @@ export default {
             zoomToAccuracy: true,    // 定位成功后调整地图视野
           })
           map.addControl(geolocation)
-          geolocation.getCurrentPosition(function (status, geoResult) {
-            // todo 监视 NewLocation 的变化，重新触发请求函数与渲染函数
+          geolocation.getCurrentPosition( (status, geoResult)=> {
             // 通过 computed 将 state 中要监视的数据取出来，然后通过 watch监视属性监视其变化
-            NewLocation = geoResult.position
-            console.log(`NewLocation=${NewLocation}`) // =console.log(locationNow.lng,locationNow.lat)
-            // 调试时输出
-            // if (status == 'complete') {
-            //   onComplete(geoResult)
-            // } else {
-            //   onError(geoResult)
-            // }
+            this.$store.commit('CHANGE',[geoResult.position.lng,geoResult.position.lat])
           })
         })
       }).catch(e => {
